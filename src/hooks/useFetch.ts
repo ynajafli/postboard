@@ -6,7 +6,7 @@ export function useFetch<T>(url: string): {
     error: string | null,
 } {
     const [data, setData] = useState<T | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {

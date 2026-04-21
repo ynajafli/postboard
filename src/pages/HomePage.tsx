@@ -2,7 +2,8 @@ import { useFetch } from "../hooks/useFetch";
 import type { Post } from "../types";
 
 function HomePage() {
-    const { data, isLoading, error } = useFetch<Post[]>("https://jsonplaceholder.typicode.com/posts/");
+    const { data, isLoading, error } = useFetch<Post[]>("https://jsonplaceholder.typicode.com/posts");
+    
     return (
         <>
             <h1>Home</h1>
@@ -10,8 +11,8 @@ function HomePage() {
 
             {data && (
                 <ul>
-                    {data.map(item => (
-                        <li key={item.id}>{item.title}</li>
+                    {data.map(post => (
+                        <li key={post.id}>{post.title}</li>
                     ))}
                 </ul>
             )}
