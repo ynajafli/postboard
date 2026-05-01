@@ -1,23 +1,28 @@
 import { useState, useEffect } from "react";
 
-export function useFetch<T>(url: string): {
+export function useFetch<T>(url: string | null): {
     data: T | null,
     isLoading: boolean,
     error: string | null,
 } {
     const [data, setData] = useState<T | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        if (url === null) return;
+
+        const fetchUrl = url;
+
         let cancelled = false;
         async function fetchData() {
             try {
                 setIsLoading(true);
-                const response = await fetch(url);
+                const response = await fetch(fetchUrl);
                 if (response.ok) {
                     const jsonResponse = await response.json();
                     if (!cancelled) setData(jsonResponse);
+                    setIsLoading(false);
                 } else {
                     throw new Error('Request failed!');
                 }
