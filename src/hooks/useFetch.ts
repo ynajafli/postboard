@@ -22,7 +22,6 @@ export function useFetch<T>(url: string | null): {
                 if (response.ok) {
                     const jsonResponse = await response.json();
                     if (!cancelled) setData(jsonResponse);
-                    setIsLoading(false);
                 } else {
                     throw new Error('Request failed!');
                 }
