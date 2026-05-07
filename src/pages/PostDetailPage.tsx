@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import type { Post, User, Comment } from "../types";
+import List from "../components/List";
 
 function PostDetailPage() {
     
@@ -23,9 +24,7 @@ function PostDetailPage() {
                     <h3>By {user.name}</h3>
                     <p>{post.body}</p>
                     <h4>Comments</h4>
-                    {comments.map(comment => (
-                        <li key={comment.id}>{comment.body}</li>
-                    ))}
+                    <List items={comments} renderItem={(comment) => <li key={comment.id}>{comment.body}</li>} />
                 </>
             )}
 

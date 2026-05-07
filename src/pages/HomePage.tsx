@@ -4,6 +4,7 @@ import { useState } from "react";
 import PageIndicator from "../components/PageIndicator";
 import PaginationControls from "../components/PaginationControls";
 import { Link } from "react-router-dom";
+import List from "../components/List";
 
 function HomePage() {
     const { data, isLoading, error } = useFetch<Post[]>("https://jsonplaceholder.typicode.com/posts");
@@ -21,11 +22,7 @@ function HomePage() {
             {data && (
                 <>
                     <PageIndicator currentPage={currentPage} totalPages={totalPages} />
-                    <ul>
-                        {visiblePosts.map(post => (
-                            <li key={post.id}><Link to={`/posts/${post.id}`}>{post.title}</Link></li>
-                        ))}
-                    </ul>
+                        <List items={visiblePosts} renderItem={(post) => <li key={post.id}><Link to={`/posts/${post.id}`}>{post.title}</Link></li>} />
                     <PaginationControls currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage}/>
                 </>
             )}
