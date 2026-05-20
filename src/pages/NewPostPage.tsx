@@ -58,7 +58,6 @@ function NewPostPage() {
         <>
             <h1>New Post</h1>
             {isLoading && <p>loading...</p>}
-            <h2>{author}</h2>
 
             {users && (
                 <>
